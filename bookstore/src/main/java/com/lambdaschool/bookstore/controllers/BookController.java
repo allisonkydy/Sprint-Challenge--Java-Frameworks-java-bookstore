@@ -41,7 +41,7 @@ public class BookController
   public ResponseEntity<?> addBookToAuthor(@PathVariable long bookid,
                                            @PathVariable long authorid)
   {
-    // TODO: add book to author
+    bookService.addBookToAuthor(bookid, authorid);
     return new ResponseEntity<>(HttpStatus.OK);
   }
 
