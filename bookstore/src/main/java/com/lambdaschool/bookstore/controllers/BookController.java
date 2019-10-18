@@ -3,6 +3,8 @@ package com.lambdaschool.bookstore.controllers;
 import com.lambdaschool.bookstore.models.Book;
 import com.lambdaschool.bookstore.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +20,10 @@ public class BookController
   // GET /books/books - returns a JSON object list of all the books, their sections, and their authors.
   @GetMapping(value = "/books/books",
               produces = {"application/json"})
-  public ResponseEntity<?> listAllBooks()
+  public ResponseEntity<?> listAllBooks(@PageableDefault(page = 0, size = 3)
+                                              Pageable pageable)
   {
-    return new ResponseEntity<>(bookService.findAll(), HttpStatus.OK);
+    return new ResponseEntity<>(bookService.findAll(pageable), HttpStatus.OK);
   }
 
   // PUT /data/books/{id} - updates a books info (Title, Copyright, ISBN) but does NOT have to assign authors to the books.
