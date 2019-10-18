@@ -18,7 +18,6 @@ public class AuthorController
               produces = {"application/json"})
   public ResponseEntity<?> listAllAuthors()
   {
-    // TODO: find all authors
-    return new ResponseEntity<>(HttpStatus.OK);
+    return new ResponseEntity<>(authorService.findAll(), HttpStatus.OK);
   }
 }

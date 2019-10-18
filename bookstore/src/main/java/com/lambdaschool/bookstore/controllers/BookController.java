@@ -30,7 +30,8 @@ public class BookController
   public ResponseEntity<?> updateBookInfo(@Valid
                                           @RequestBody
                                               Book book,
-                                          @PathVariable long id)
+                                          @PathVariable
+                                              long id)
   {
     // TODO: update book info
     return new ResponseEntity<>(HttpStatus.OK);
