@@ -17,9 +17,10 @@ public class Author extends Auditable
   private String lastname;
   private String firstname;
 
-  @ManyToMany(mappedBy = "authors")
-  @JsonIgnoreProperties("authors")
-  private List<Book> books = new ArrayList<>();
+  @OneToMany(mappedBy = "author",
+             cascade = CascadeType.ALL)
+  @JsonIgnoreProperties("author")
+  private List<Wrote> wrote = new ArrayList<>();
 
   public Author()
   {
@@ -61,19 +62,19 @@ public class Author extends Auditable
     this.firstname = firstname;
   }
 
-  public List<Book> getBooks()
+  public List<Wrote> getWrote()
   {
-    return books;
+    return wrote;
   }
 
-  public void setBooks(List<Book> books)
+  public void setWrote(List<Wrote> wrote)
   {
-    this.books = books;
+    this.wrote = wrote;
   }
 
   @Override
   public String toString()
   {
-    return "Author{" + "authorid=" + authorid + ", lastname='" + lastname + '\'' + ", firstname='" + firstname + '\'' + ", books=" + books + '}';
+    return "Author{" + "authorid=" + authorid + ", lastname='" + lastname + '\'' + ", firstname='" + firstname + '\'' + ", wrote=" + wrote + '}';
   }
 }

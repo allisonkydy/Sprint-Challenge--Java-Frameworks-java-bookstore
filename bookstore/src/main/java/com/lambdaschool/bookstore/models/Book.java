@@ -28,12 +28,10 @@ public class Book extends Auditable
   @JsonIgnoreProperties("books")
   private Section section;
 
-  @ManyToMany
-  @JoinTable(name = "wrote",
-             joinColumns = {@JoinColumn(name = "bookid")},
-             inverseJoinColumns = {@JoinColumn(name = "authorid")})
-  @JsonIgnoreProperties("books")
-  private List<Author> authors = new ArrayList<>();
+  @OneToMany(mappedBy = "book",
+             cascade = CascadeType.ALL)
+  @JsonIgnoreProperties("book")
+  private List<Wrote> wrote = new ArrayList<>();
 
   public Book()
   {
@@ -96,19 +94,19 @@ public class Book extends Auditable
     this.section = section;
   }
 
-  public List<Author> getAuthors()
+  public List<Wrote> getWrote()
   {
-    return authors;
+    return wrote;
   }
 
-  public void setAuthors(List<Author> authors)
+  public void setWrote(List<Wrote> wrote)
   {
-    this.authors = authors;
+    this.wrote = wrote;
   }
 
   @Override
   public String toString()
   {
-    return "Book{" + "bookid=" + bookid + ", booktitle='" + booktitle + '\'' + ", ISBN='" + ISBN + '\'' + ", copy=" + copy + ", section=" + section + ", authors=" + authors + '}';
+    return "Book{" + "bookid=" + bookid + ", booktitle='" + booktitle + '\'' + ", ISBN='" + ISBN + '\'' + ", copy=" + copy + ", section=" + section + ", wrote=" + wrote + '}';
   }
 }
