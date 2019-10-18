@@ -20,8 +20,7 @@ public class BookController
               produces = {"application/json"})
   public ResponseEntity<?> listAllBooks()
   {
-    // TODO: find all books
-    return new ResponseEntity<>(HttpStatus.OK);
+    return new ResponseEntity<>(bookService.findAll(), HttpStatus.OK);
   }
 
   // PUT /data/books/{id} - updates a books info (Title, Copyright, ISBN) but does NOT have to assign authors to the books.
@@ -33,7 +32,7 @@ public class BookController
                                           @PathVariable
                                               long id)
   {
-    // TODO: update book info
+    bookService.update(book, id);
     return new ResponseEntity<>(HttpStatus.OK);
   }
 
@@ -50,7 +49,7 @@ public class BookController
   @DeleteMapping(value = "/data/books/{id}")
   public ResponseEntity<?> deleteBook(@PathVariable long id)
   {
-    // TODO: delete book (not author)
+    bookService.delete(id);
     return new ResponseEntity<>(HttpStatus.OK);
   }
 }

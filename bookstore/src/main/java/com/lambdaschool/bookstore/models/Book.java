@@ -21,7 +21,7 @@ public class Book extends Auditable
           unique = true)
   private String ISBN;
 
-  private int copy;
+  private Integer copy;
 
   @ManyToOne
   @JoinColumn(name = "sectionid")
@@ -37,7 +37,7 @@ public class Book extends Auditable
   {
   }
 
-  public Book(String booktitle, String ISBN, int copy)
+  public Book(String booktitle, String ISBN, Integer copy)
   {
     this.booktitle = booktitle;
     this.ISBN = ISBN;
@@ -74,12 +74,12 @@ public class Book extends Auditable
     this.ISBN = ISBN;
   }
 
-  public int getCopy()
+  public Integer getCopy()
   {
     return copy;
   }
 
-  public void setCopy(int copy)
+  public void setCopy(Integer copy)
   {
     this.copy = copy;
   }
